@@ -4,6 +4,7 @@ import Layout from "../src/components/layout";
 import Card from "../src/components/Card";
 import Gallery from "../src/components/Gallery";
 import { getAlbums } from "../src/utils/contentful";
+import Head from 'next/head'
 
 const Page = () => {
   const [albums, setAlbums] = useState([]);
@@ -23,6 +24,10 @@ const Page = () => {
 
   return (
     <Layout>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>Nico Vial | Portfolio</title>
+      </Head>
       <Gallery leftPadding={0}>
         {albums &&
           shuffleArray(albums).map((album, index) => {

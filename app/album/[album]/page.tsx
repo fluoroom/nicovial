@@ -4,7 +4,7 @@ import Layout from "../../../src/components/layout";
 import Card from "../../../src/components/Card";
 import Gallery from "../../../src/components/Gallery";
 import {getAlbum }from "../../../src/utils/contentful";
-import { useParams } from "next/navigation";
+import Head from 'next/head'
 
 const AlbumPage = ({ params }: { params: { album: string } }) => {
   const [album, setAlbum] = useState({title:"",photos:[{fields:{file:{url:'a'}},sys:{id:''}}]});
@@ -98,6 +98,10 @@ const AlbumPage = ({ params }: { params: { album: string } }) => {
           }
         `}
       </style>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>{album.title} \ Nico Vial | Portfolio</title>
+      </Head>
       <div id="galleryText">
         <h2>
           {title0}
