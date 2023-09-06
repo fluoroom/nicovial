@@ -3,15 +3,26 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../../src/components/layout";
 import Card from "../../../src/components/Card";
 import Gallery from "../../../src/components/Gallery";
-import {getAlbum }from "../../../src/utils/contentful";
-import Head from 'next/head'
+import { getAlbum } from "../../../src/utils/contentful";
+import { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'Nico Vial | Portfolio'
+}
 
-const AlbumPage = ({ params }: { params: { album: string } }) => {
-  const [album, setAlbum] = useState({title:"",photos:[{fields:{file:{url:'a'}},sys:{id:''}}]});
-  useEffect(()=>{getAlbum(params.album).then((res) => {
-    setAlbum(JSON.parse(JSON.stringify(res.fields)));
-  });},[])
+const AlbumPage=({ params}) => {
   
+  const [album, setAlbum] = useState({
+    title: "",
+    photos: [{ fields: { file: { url: "a" } }, sys: { id: "" } }],
+  });
+  useEffect(() => {
+    document.title="Nico Vial | Portfolio";
+    getAlbum(params.album).then((res) => {
+      setAlbum(JSON.parse(JSON.stringify(res.fields)));
+      document.title=`${res.fields.title} - Nico Vial | Portfolio`;
+    });
+  }, []);
 
   var title0;
   var title1;
@@ -98,10 +109,6 @@ const AlbumPage = ({ params }: { params: { album: string } }) => {
           }
         `}
       </style>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <title>{album.title} \ Nico Vial | Portfolio</title>
-      </Head>
       <div id="galleryText">
         <h2>
           {title0}
@@ -111,9 +118,17 @@ const AlbumPage = ({ params }: { params: { album: string } }) => {
         <div dangerouslySetInnerHTML={{ __html: description }}></div>
       </div>
       <Gallery leftPadding>
-        {album.title && album.photos.map((photo) => {
-          return <Card src={photo.fields.file.url} key={photo.sys.id} title="" link="" />;
-        })}
+        {album.title &&
+          album.photos.map((photo) => {
+            return (
+              <Card
+                src={photo.fields.file.url}
+                key={photo.sys.id}
+                title=""
+                link=""
+              />
+            );
+          })}
       </Gallery>
     </Layout>
   );
