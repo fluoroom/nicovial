@@ -16,6 +16,7 @@ const Page = () => {
     return newArray;
   }
   useEffect(() => {
+    document.title="Nico Vial | Portfolio";
     getAlbums().then((res) => {
       setAlbums(res);
     });
