@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../../src/components/layout";
 import Card from "../../../src/components/Card";
 import Gallery from "../../../src/components/Gallery";
-import { getAlbum } from "../../../src/utils/contentful";
-import { Metadata } from 'next'
- 
-export const metadata: Metadata = {
-  title: 'Nico Vial | Portfolio'
-}
+import { getAlbum } from "../../../src/utils/contentful"; 
 
 const AlbumPage=({ params}) => {
   
