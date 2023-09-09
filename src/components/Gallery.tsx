@@ -1,7 +1,7 @@
 "use client"
 import React, {useEffect, useLayoutEffect} from 'react'
 
-const Gallery = ({leftPadding,show, children}) => {
+const Gallery = ({leftPadding, children}) => {
   useEffect(()=>{
     let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
