@@ -49,7 +49,7 @@ const Card = ({ src, title, link }) => {
             width: 0px;
           }
           .card > a {
-            pointer-events: ${link ? "auto" : "none"};
+            pointer-events: ${link.length ? "auto" : "none"}; 
           }
         }
         @media (max-width: 900px) {
@@ -101,7 +101,7 @@ const Card = ({ src, title, link }) => {
           <h2>
             {title0}
             <br />
-            <span className="small">{title1}</span>
+            <span className="small">{title1}</span> 
           </h2>
         </a>
       </div>
