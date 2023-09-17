@@ -1,23 +1,17 @@
-import Home from "./Home"
+import Home from "./Home";
 import { getAlbums } from "../src/utils/contentful";
+import { headers } from "next/headers";
 
-export const  metadata = {
-    title:"Nico Vial | Portfolio",
-    description:"Photography portfolio"
-}
+export const metadata = {
+  title: "Nico Vial | Portfolio",
+  description: "Photography portfolio",
+};
 
-const Page = async () =>{
-    function shuffleArray(array) {
-        const newArray = [...array]; // Create a shallow copy of the input array to avoid modifying the original array.
-        for (let i = newArray.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-        }
-        return newArray;
-      }
-    const albums = shuffleArray(await getAlbums()); 
+const Page = async ({ searchParams }) => {
+  const shuffle = (array) => array.sort(() => Math.random() - 0.5);
+  const albums = shuffle(await getAlbums());
+  headers();
+  return <Home albums={albums} />;
+};
 
-    return <Home albums={albums}/> 
-}
-
-export default Page
+export default Page;
